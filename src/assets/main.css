@@ -1,0 +1,36 @@
+body	{
+	background-image:url("/img/Superficie-Gris106.jpg");
+	padding:0;	
+	overflow:none;
+}
+
+.main_content{
+	padding: 90px 0px 10px 0px;
+	background-color: white;
+	box-shadow:0px 0px 20px #727272;
+}
+
+/*nav*/
+.navbar {
+	background-color: white;
+	border-color: rgba(255,255,255,0.3);
+ 	box-shadow:0px 0px 10px #727272;
+ 	padding: 12px 0;
+}
+
+.navbar .navbar-brand, .navbar ul.nav li a {
+	font-size: 20px;
+}
+.navbar .navbar-brand:hover, .navbar ul.nav li a:hover {
+	color: #e3e3e3;
+}
+
+img.lazy {
+	cursor: pointer;
+}
+
+.fb_iframe_widget iframe {
+    position:absolute;
+    right:0px;
+    background:#fff; /* in your case you may want to add a white background */
+}

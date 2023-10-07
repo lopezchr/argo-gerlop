@@ -1,0 +1,59 @@
+---
+import Default from '../layouts/default.astro'
+import { Image } from 'astro:assets';
+
+import portadaImage from '../assets/img/pinturas/portada.jpg'
+import pintura1Image from '../assets/img/pinturas/pintura1.jpg'
+import dibujo2Image from '../assets/img/pinturas/dibujo2.jpg'
+---
+<Default>
+	<!-- INTRODUCCION -->
+	<section class="row">
+		<article class="col-xs-12 col-md-7 col-lg-10">
+			<h3>Luis German López Ojeda, de la ciencia al arte.</h3>
+
+			<p>Pintor colombiano destacado por su labor como Dibujante Botánico y Artista. Su trabajo ha sido un proceso investigativo continuo a través de la forma con base en la disciplina del dibujo. Sus logros juegan a través del espacio perspectiva y magia produciendo sensaciones nuevas para el admirador de la realidad y la fantasía.</p>
+			<p>Su incursión en el dibujo ha sido de gran productividad y grandes logros no solo por su agilidad y destreza sino por su creatividad, cualidad indispensable para dar vida a las imágenes que a veces nuestros ojos no alcanzan a captar.</p>
+			<p>Los resultados lo han llevado a descubrir un mundo de diferentes dimensiones siempre unido a lo real por un hilo que liga lo onírico con la vida común, haciendo de esta forma más atractiva su obra. De esta manera su aporte a la plástica ha sido productiva por su versatilidad y espontaneidad que se demuestran el dominio de la técnica y facilidad de trazo,  logrando  imprimir gran energía en sus obras.</p>
+		</article>
+		<div class="col-xs-12 col-md-5 col-lg-2">
+			<Image src={portadaImage} class="expanded-image" alt="">
+		</div>
+	</section>
+
+	<section class="row">
+		<div class="col-xs-12 col-md-5 col-lg-2">
+			<Image src={pintura1Image} class="expanded-image" alt="">
+		</div>
+		<article class="col-xs-12 col-md-7 col-lg-10">
+			<h3>Biografia</h3>
+			<p>Nació en Bogotá. Estudió Bellas Artes en la Universidad Nacional de Colombia y, dibujo y grabado con el profesor Dioscórides Fernández. Trabajó como ilustrador científico en el museo de Ciencias y como dibujante botánico en el departamento de Biología, entidades adscritas a la Facultad de Ciencias de la Universidad Nacional de Colombia. Realizó trabajos para el Jardín Botánico, participó en proyectos como La Flora de Colombia, que recolecta y documenta especies de flora y fauna halladas desde la expedición botánica, además  ilustró proyectos antropológicos y arqueológicos bajo la dirección del profesor Gonzalo Correal.</p>
+			<p>German no solo ha sido reconocido dentro de su labor como dibujante botánico e ilustrador, si no que también ha sido elogiado con varios premios nacionales alrededor de su vida netamente artística dentro de los cuales se encuentra el primer premio en el XI concurso Nacional de pintura entre otros (véase la sección “conmemoraciones”).</p>
+			<p>Actualmente se encuentra pensionado, disfruta de su habilidad artistica, la compañía de sus 4 hijos y su esposa Yesmith.</p>
+		</article>
+		
+	</section>
+
+	<section class="row">
+		<article class="col-xs-12 col-md-7 col-lg-10">
+			<h3>Conmemoraciones</h3>
+			<p>Estos son algunos de los premios y logros otorgados a Luis German López durante su carrera artistica.</p>
+			<p>Segundo premio, Concurso Nacional de Pintura I.N.B.S - 1984</br>
+			Primer Premio, Concurso Nacional de Pintura I.N.B.S - 1985</br>
+			Primer Mención, Salón de creatividad  Universidad Nacional - 1986</br>
+			Primer Premio, Concurso de Dibujo y Pintura, Universidad Nacional - 1996</br>
+			Primer Premio, Concurso de Dibujo y Pintura, Universidad Nacional - 1997</br>
+			Primer Premio, Muestra de Dibujo y Pintura, Faculta de ciencias Univ. Nac. - 1997</p>
+		</article>
+		<div class="col-xs-12 col-md-5 col-lg-2">
+			<Image src={dibujo2Image} class="expanded-image" alt="">
+		</div>
+	</section>
+</Default>
+
+<style>
+.expanded-image {
+	width: 100%;
+	height: auto;
+}
+</style>
