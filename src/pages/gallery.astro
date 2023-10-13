@@ -1,0 +1,47 @@
+---
+import db from '../services/database'
+import Default from '../layouts/defaultLayout.astro'
+import { Image } from 'astro:assets';
+
+const sections = await db('sections')
+
+const result = []
+for (const sectionData of sections) {
+  const paints = await db('paints').where('sectionId', sectionData.id)
+  result.push({
+    id: sectionData.id,
+    name: sectionData.title,
+    description: sectionData.description,
+    paints
+  })
+}
+---
+<Default>
+{ result.map(section => (
+<article>
+  <h3>{section.name}</h3>
+  <p>{section.description}</p>
+
+  <div class="row">
+    {section.paints.map(paint => (
+      <div class="col-6 col-sm-4 mb-3">
+        <a href={`/paint/${paint.id}`}>
+          <img src={`${import.meta.env.AWS_S3_BUCKET}/thumbnails/${paint.path}`} class="thumb" alt={paint.title}/>
+        </a>
+        <i class="paint-title">{paint.title}</i>
+      </div>
+    ))}
+  </div>
+</article>
+))}
+</Default>
+
+<style>
+.thumb {
+  width: 100%;
+}
+
+.paint-title {
+  font-size: 12px;
+}
+</style>

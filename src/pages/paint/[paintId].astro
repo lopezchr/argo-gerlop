@@ -1,0 +1,82 @@
+---
+import db from '../../services/database'
+import ConcentrationLayout from '../../layouts/concentrationLayout.astro'
+import { Image } from 'astro:assets';
+
+// gallery images
+import nextImageControlImg from '../../assets/img/gallery/gerlop_right.png'
+import previousImageControlImg from '../../assets/img/gallery/gerlop_left.png'
+import panelImageControlImg from '../../assets/img/gallery/gerlop_panel.png'
+
+export const getStaticPaths = (async () => {
+  const paints = await db('paints')
+    .select('paints.*', 'sections.title as sectionTitle')
+    .innerJoin('sections', 'sectionId', 'sections.id')
+
+  return paints.map((paint, currentIndex) => {
+    const relatedContent = paints.filter(item => item.sectionId === paint.sectionId)
+    const nextPaint = relatedContent.find((item, index) => index && paints.indexOf(item) > currentIndex )
+    const previousPaint = relatedContent.slice().reverse().find((item, index) => index && paints.indexOf(item) < currentIndex )
+
+    return {
+      params: { paintId: paint.id },
+      props: { paint, nextPaint, previousPaint }
+    }
+  })
+})
+
+// const { id, slug } = Astro.params;
+const { paint, nextPaint, previousPaint } = Astro.props
+console.log({ paint, nextPaint, previousPaint })
+---
+<ConcentrationLayout>
+  <div class="d-flex flex-column" style="height: 100vh">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3>{paint.sectionTitle} - {paint.title}</h3>
+      <div class="d-flex align-items-center">
+        <a href="/gallery">
+          <span class="mx-2">Ver galería</span>
+          <Image src={panelImageControlImg} alt="go to gallery"/>
+        </a>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center flex-grow-1">
+      <div class="image-control">
+        { previousPaint &&
+          <a href={`/paint/${previousPaint.id}`}>
+            <Image src={previousImageControlImg} alt="previews image"/>
+          </a>
+        }
+      </div>
+
+      <div class="flex-grow-1 d-flex justify-content-center">
+        <img class="paint" src={`${import.meta.env.AWS_S3_BUCKET}/images/${paint.path}`} alt={paint.title}>
+      </div>
+      
+      <div class="image-control">
+        <a href={`/paint/${nextPaint.id}`}>
+          <Image src={nextImageControlImg} alt="next image"/>
+        </a>
+      </div>
+    </div>
+  </div>
+</ConcentrationLayout>
+
+<style>
+  .paint {
+    width: auto;
+    max-height: 80vh;
+    max-width: 80vw;
+  }
+
+  .image-control {
+    width: 40px;
+    text-align: center;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+</style>
