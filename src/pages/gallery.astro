@@ -24,9 +24,9 @@ for (const sectionData of sections) {
 
   <div class="row">
     {section.paints.map(paint => (
-      <div class="col-6 col-sm-4 mb-3">
+      <div class="col-6 col-sm-4 col-md-3 mb-3">
         <a href={`/paint/${paint.id}`}>
-          <img src={`${import.meta.env.AWS_S3_BUCKET}/thumbnails/${paint.path}`} class="thumb" alt={paint.title}/>
+          <Image src={`${import.meta.env.AWS_S3_BUCKET}/thumbnails/${paint.path}`} class="thumb" alt={paint.title} width={400} height={400} quality={'mid'}/>
         </a>
         <i class="paint-title">{paint.title}</i>
       </div>
@@ -39,6 +39,7 @@ for (const sectionData of sections) {
 <style>
 .thumb {
   width: 100%;
+  height: auto;
 }
 
 .paint-title {
